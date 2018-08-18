@@ -30,7 +30,6 @@
       const patterns = event.data.patterns || {};
 
       const js = {};
-
       for (const appName in patterns) {
         if (patterns.hasOwnProperty(appName)) {
           js[appName] = {};

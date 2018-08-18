@@ -230,7 +230,8 @@ class Wappalyzer {
           if (Object.keys(apps).length) {
             this.log(`Identified ${Object.keys(apps).join(', ')} (${url.hostname})`, 'core');
           }
-
+          this.log(this.detected, 'zaddy');
+          this.log("HELLO THERE");
           this.driver.displayApps(this.detected[url.canonical], { language }, context);
 
           return resolve();
