@@ -40,6 +40,14 @@ body {
   line-height: 1.4rem;
 }
 
+.amp_supported {
+  background: blue;
+}
+
+.amp_not_supported {
+  background: red;
+}
+
 .detected__category {
   page-break-inside: avoid;
   break-inside: avoid-column;
