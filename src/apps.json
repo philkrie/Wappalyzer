@@ -9606,7 +9606,8 @@
       },
       "script": [
         "^//tags\\.tiqcdn\\.com/",
-        "/tealium/utag\\.js$"
+        "/tealium/utag\\.js$",
+        "tiqcdn.com/utag"
       ],
       "website": "http://tealium.com"
     },

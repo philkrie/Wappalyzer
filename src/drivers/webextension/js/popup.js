@@ -32,10 +32,6 @@ function replaceDomWhenReady(dom) {
 function replaceDom(domTemplate) {
   const container = document.getElementsByClassName('container')[0];
 
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
-
   container.appendChild(jsonToDOM(domTemplate, document, {}));
 
   const nodes = document.querySelectorAll('[data-i18n]');
@@ -85,7 +81,6 @@ function appsToDomTemplate(response) {
     for (const appName in response.tabCache.detected) {
       response.apps[appName].cats.forEach((cat) => {
         categories[cat] = categories[cat] || { apps: [] };
-
         categories[cat].apps[appName] = appName;
       });
     }
@@ -94,7 +89,7 @@ function appsToDomTemplate(response) {
     for (const cat in categories) {
       const amp_supported_apps = [];
       const amp_not_supported_apps = [];
-      console.log("Categorsy:" + cat);
+      console.log("Category:" + cat);
 
       for (const appName in categories[cat].apps) {
         const confidence = response.tabCache.detected[appName].confidenceTotal;
@@ -131,7 +126,40 @@ function appsToDomTemplate(response) {
               ] : null,
             ],
           );
-          amp_supported_template.push(
+        } else {
+          amp_not_supported_apps.push(
+            [
+              'a', {
+                class: 'detected__app',
+                target: '_blank',
+                href: `https://www.wappalyzer.com/technologies/${slugify(appName)}`,
+              }, [
+                'img', {
+                  class: 'detected__app-icon',
+                  src: `../images/icons/${response.apps[appName].icon || 'default.svg'}`,
+                },
+              ], [
+                'span', {
+                  class: 'detected__app-name',
+                },
+                appName,
+              ], version ? [
+                'span', {
+                  class: 'detected__app-version',
+                },
+                version,
+              ] : null, confidence < 100 ? [
+                'span', {
+                  class: 'detected__app-confidence',
+                },
+                `${confidence}% sure`,
+              ] : null,
+            ],
+          );
+        }
+      }
+      if(amp_supported_apps.length != 0){
+        amp_supported_template.push(
             [
               'div', {
                 class: 'detected__category',
@@ -170,37 +198,9 @@ function appsToDomTemplate(response) {
               ],
             ],
           );
-        } else {
-          amp_not_supported_apps.push(
-            [
-              'a', {
-                class: 'detected__app',
-                target: '_blank',
-                href: `https://www.wappalyzer.com/technologies/${slugify(appName)}`,
-              }, [
-                'img', {
-                  class: 'detected__app-icon',
-                  src: `../images/icons/${response.apps[appName].icon || 'default.svg'}`,
-                },
-              ], [
-                'span', {
-                  class: 'detected__app-name',
-                },
-                appName,
-              ], version ? [
-                'span', {
-                  class: 'detected__app-version',
-                },
-                version,
-              ] : null, confidence < 100 ? [
-                'span', {
-                  class: 'detected__app-confidence',
-                },
-                `${confidence}% sure`,
-              ] : null,
-            ],
-          );
-          amp_not_supported_template.push(
+      }
+      if(amp_not_supported_apps.length != 0){
+        amp_not_supported_template.push(
             [
               'div', {
                 class: 'detected__category',
@@ -239,23 +239,23 @@ function appsToDomTemplate(response) {
               ],
             ],
           );
-        }
-
-        
       }
     }
     
+    
+
     template = [
           [
-          'div', {
-            class: 'amp_supported',
-          },
-          amp_supported_template,
-         ],[
-          'div', {
-            class: 'amp_not_supported',
-          },
-          amp_not_supported_template,
+            'div', {
+              class: 'amp_supported card',
+            },
+            amp_supported_template,
+          ],
+          [
+            'div', {
+              class: 'amp_not_supported card',
+            },
+            amp_not_supported_template,
           ]
         ];
   } else {
