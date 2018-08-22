@@ -1,28 +1,19 @@
 {
-	"name": "Wappalyzer",
-	"short_name": "Wappalyzer",
-	"author": "Elbert Alias",
-	"homepage_url": "https://www.wappalyzer.com",
-	"description": "Identify web technologies",
-	"version": "5.5.2",
+	"name": "AMP Readiness Tool",
+	"short_name": "AMP Readiness Tool",
+	"author": "Jeffrey Jose and Phillip Kriegel",
+	"homepage_url": "https://github.com/ampproject/ampbench/tree/master/readiness-tool",
+	"description": "Identify web technologies that are relevant to AMP",
+	"version": "3.0.0",
 	"default_locale": "en",
 	"manifest_version": 2,
-	"icons": {
-		"16": "images/icon_16.png",
-		"19": "images/icon_19.png",
-		"32": "images/icon_32.png",
-		"38": "images/icon_38.png",
-		"128": "images/icon_128.png"
-	},
 	"page_action": {
 		"default_icon": {
-			"16": "images/icon_16.png",
-			"19": "images/icon_19.png",
-			"32": "images/icon_32.png",
-			"38": "images/icon_38.png",
-			"128": "images/icon_128.png"
-		},
-		"default_title": "Wappalyzer",
+			"16": "images/amp-readiness.png",
+			"48": "images/amp-readiness.png",
+			"128": "images/amp-readiness.png"
+		  },
+		"default_title": "AMP Readiness Checker",
 		"default_popup": "html/popup.html"
 	},
 	"background": {

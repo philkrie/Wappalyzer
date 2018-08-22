@@ -73,6 +73,8 @@ function appsToDomTemplate(response) {
   let template = [];
   let amp_supported_template = [];
   let amp_not_supported_template = [];
+  //Control what categories of apps we will use
+  let approved_categories = [1,6,10,11,12,18,36,41,42,59];
 
   if (response.tabCache && Object.keys(response.tabCache.detected).length > 0) {
     const categories = {};
@@ -80,23 +82,20 @@ function appsToDomTemplate(response) {
     // Group apps by category
     for (const appName in response.tabCache.detected) {
       response.apps[appName].cats.forEach((cat) => {
-        categories[cat] = categories[cat] || { apps: [] };
-        categories[cat].apps[appName] = appName;
+        if (approved_categories.includes(cat)){
+          categories[cat] = categories[cat] || { apps: [] };
+          categories[cat].apps[appName] = appName;
+        }
       });
     }
-    console.log("Categories:");
-    console.log(categories);
     for (const cat in categories) {
       const amp_supported_apps = [];
       const amp_not_supported_apps = [];
-      console.log("Category:" + cat);
 
       for (const appName in categories[cat].apps) {
         const confidence = response.tabCache.detected[appName].confidenceTotal;
         const version = response.tabCache.detected[appName].version;
-        console.log("Trying " + appName);
         if(isAMPSupported(appName)){
-          console.log(appName + " is supported");
           amp_supported_apps.push(
             [
               'a', {
