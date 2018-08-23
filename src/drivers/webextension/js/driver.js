@@ -82,12 +82,20 @@ fetch('../apps.json')
   .then((json) => {
     wappalyzer.apps = json.apps;
     wappalyzer.categories = json.categories;
+    
+    fetch('../extended_apps.json')
+      .then(response_ext => response_ext.json())
+      .then((json_ext) => {
+        
+        wappalyzer.apps = Object.assign({}, wappalyzer.apps, json_ext.apps);
 
-    wappalyzer.parseJsPatterns();
+        wappalyzer.parseJsPatterns();
 
-    categoryOrder = Object.keys(wappalyzer.categories)
-      .map(categoryId => parseInt(categoryId, 10))
-      .sort((a, b) => wappalyzer.categories[a].priority - wappalyzer.categories[b].priority);
+        categoryOrder = Object.keys(wappalyzer.categories)
+          .map(categoryId => parseInt(categoryId, 10))
+          .sort((a, b) => wappalyzer.categories[a].priority - wappalyzer.categories[b].priority);
+    })
+    .catch(error => wappalyzer.log(`GET extended_apps.json: ${error}`, 'driver', 'error'));
   })
   .catch(error => wappalyzer.log(`GET apps.json: ${error}`, 'driver', 'error'));
 
@@ -97,17 +105,12 @@ const { version } = browser.runtime.getManifest();
 getOption('version')
   .then((previousVersion) => {
     if (previousVersion === null) {
-      openTab({
-        url: `${wappalyzer.config.websiteURL}installed`,
-      });
+      
     } else if (version !== previousVersion) {
       getOption('upgradeMessage', true)
         .then((upgradeMessage) => {
           if (upgradeMessage) {
-            openTab({
-              url: `${wappalyzer.config.websiteURL}upgraded?v${version}`,
-              background: true,
-            });
+           
           }
         });
     }
@@ -115,8 +118,8 @@ getOption('version')
     setOption('version', version);
   });
 
-getOption('dynamicIcon', true);
-getOption('pinnedCategory');
+getOption('dynamicIcon', false);
+
 
 getOption('hostnameCache', {})
   .then((hostnameCache) => {

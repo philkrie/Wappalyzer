@@ -1,0 +1,12 @@
+{
+    "apps": {
+        "Bluekai": {
+            "cats": [
+                36
+            ],
+            "html": "__bkframe",
+            "icon": "BlueKai.png",
+            "website": "https://www.oracle.com/marketingcloud/products/data-management-platform/index.html"
+        }
+    }
+}

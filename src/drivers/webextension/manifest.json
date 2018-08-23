@@ -7,12 +7,13 @@
 	"version": "3.0.0",
 	"default_locale": "en",
 	"manifest_version": 2,
+	"icons": {
+		"16": "images/amp-readiness.png",
+		"48": "images/amp-readiness.png",
+		"128": "images/amp-readiness.png"
+	},
 	"page_action": {
-		"default_icon": {
-			"16": "images/amp-readiness.png",
-			"48": "images/amp-readiness.png",
-			"128": "images/amp-readiness.png"
-		  },
+		"default_icon": "images/amp-readiness.png",
 		"default_title": "AMP Readiness Checker",
 		"default_popup": "html/popup.html"
 	},

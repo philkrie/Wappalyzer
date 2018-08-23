@@ -10,7 +10,7 @@ const func = (tabs) => {
     source: 'popup.js',
   }, (response) => {
     pinnedCategory = response.pinnedCategory;
-
+    console.log(response.apps);
     replaceDomWhenReady(appsToDomTemplate(response));
   });
 };
@@ -38,34 +38,6 @@ function replaceDom(domTemplate) {
 
   Array.prototype.forEach.call(nodes, (node) => {
     node.childNodes[0].nodeValue = browser.i18n.getMessage(node.dataset.i18n);
-  });
-
-  Array.from(document.querySelectorAll('.detected__category-pin-wrapper')).forEach((pin) => {
-    pin.addEventListener('click', () => {
-      const categoryId = parseInt(pin.dataset.categoryId, 10);
-
-      if (categoryId === pinnedCategory) {
-        pin.className = 'detected__category-pin-wrapper';
-
-        pinnedCategory = null;
-      } else {
-        const active = document.querySelector('.detected__category-pin-wrapper--active');
-
-        if (active) {
-          active.className = 'detected__category-pin-wrapper';
-        }
-
-        pin.className = 'detected__category-pin-wrapper detected__category-pin-wrapper--active';
-
-        pinnedCategory = categoryId;
-      }
-
-      (chrome || browser).runtime.sendMessage({
-        id: 'set_option',
-        key: 'pinnedCategory',
-        value: pinnedCategory,
-      });
-    });
   });
 }
 
@@ -101,7 +73,7 @@ function appsToDomTemplate(response) {
               'a', {
                 class: 'detected__app',
                 target: '_blank',
-                href: `https://www.wappalyzer.com/technologies/${slugify(appName)}`,
+                href: `${response.apps[appName].website}`,
               }, [
                 'img', {
                   class: 'detected__app-icon',
@@ -131,7 +103,7 @@ function appsToDomTemplate(response) {
               'a', {
                 class: 'detected__app',
                 target: '_blank',
-                href: `https://www.wappalyzer.com/technologies/${slugify(appName)}`,
+                href: `${response.apps[appName].website}`,
               }, [
                 'img', {
                   class: 'detected__app-icon',
@@ -177,17 +149,7 @@ function appsToDomTemplate(response) {
                     class: `detected__category-pin-wrapper${pinnedCategory == cat ? ' detected__category-pin-wrapper--active' : ''}`,
                     'data-category-id': cat,
                     title: browser.i18n.getMessage('categoryPin'),
-                  }, [
-                    'img', {
-                      class: 'detected__category-pin detected__category-pin--active',
-                      src: '../images/pin-active.svg',
-                    },
-                  ], [
-                    'img', {
-                      class: 'detected__category-pin detected__category-pin--inactive',
-                      src: '../images/pin.svg',
-                    },
-                  ],
+                  }
                 ],
               ], [
                 'div', {
@@ -218,17 +180,7 @@ function appsToDomTemplate(response) {
                     class: `detected__category-pin-wrapper${pinnedCategory == cat ? ' detected__category-pin-wrapper--active' : ''}`,
                     'data-category-id': cat,
                     title: browser.i18n.getMessage('categoryPin'),
-                  }, [
-                    'img', {
-                      class: 'detected__category-pin detected__category-pin--active',
-                      src: '../images/pin-active.svg',
-                    },
-                  ], [
-                    'img', {
-                      class: 'detected__category-pin detected__category-pin--inactive',
-                      src: '../images/pin.svg',
-                    },
-                  ],
+                  },
                 ],
               ], [
                 'div', {
@@ -445,6 +397,7 @@ function isAMPSupported(appName) {
     'Webtrekk',
     'Yandex Metrica',
     'Google Tag Manager',
+    'Accelerated Mobile Pages',
   ];
   // If it is NOT in list of supported vendors
   return ampSupported.includes(appName);
