@@ -161,7 +161,7 @@
 }
 
 .detected__app:hover .detected__app-name {
-  border-bottom: 1px solid #4a4a4a;
+  color: #1c79c0;
 }
 
 .detected__app:hover .detected__app-version {

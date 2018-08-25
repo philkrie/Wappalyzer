@@ -5787,7 +5787,7 @@
       "script": "([\\d.]+)?/mathjax\\.js\\;version:\\1",
       "website": "https://www.mathjax.org"
     },
-    "Matomo": {
+    "Matomo (Formerly Piwik)": {
       "cats": [
         10
       ],

@@ -46,7 +46,7 @@ function appsToDomTemplate(response) {
   let amp_supported_template = [];
   let amp_not_supported_template = [];
   //Control what categories of apps we will use
-  let approved_categories = [1,6,10,11,12,18,36,41,42,59];
+  let approved_categories = [1,5,6,10,11,12,18,32,36,41,42,52,59];
 
   if (response.tabCache && Object.keys(response.tabCache.detected).length > 0) {
     const categories = {};

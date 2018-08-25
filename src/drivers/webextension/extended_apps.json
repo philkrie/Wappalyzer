@@ -7,6 +7,118 @@
             "html": "__bkframe",
             "icon": "BlueKai.png",
             "website": "https://www.oracle.com/marketingcloud/products/data-management-platform/index.html"
-        }
+        },
+        "Bing Ads": {
+            "cats": [
+                36
+            ],
+            "html": "<script[\\s\\S]*bat\\.bing\\.com/bat.js[\\s\\S]*script>",
+            "icon": "Bing Ads.png",
+            "website": "https://bingads.microsoft.com/"
+        },
+        "Branch": {
+            "cats": [
+                10
+            ],
+            "html": "cdn\\.branch\\.io/",
+            "icon": "Branch.png",
+            "website": "https://branch.io/"
+        },
+        "Google AdWords Remarketing Tag": {
+            "cats": [
+                36
+            ],
+            "html": "<script[\\s\\S]*googleads\\.g\\.doubleclick\\.net/pagead/viewthroughconversion[\\s\\S]*script>",
+            "icon": "Google AdWords Remarketing Tag.png",
+            "website": "https://ads.google.com/home/"   
+        },
+        "Koego": {
+            "cats": [
+                10
+            ],
+            "html": "tracking\\.koego\\.com/end/ego\\.js",
+            "icon": "Koego.png",
+            "website": "http://www.koego.com/"   
+        },
+        "Krux (Salesforce DMP)": {
+            "cats": [
+                10
+            ],
+            "html": [
+                "cdn\\.krxd\\.net/userdata",
+                "beacon\\.krxd\\.net",
+                "cdn\\.krxd\\.net/ctjs",
+                "cdn\\.krxd\\.net/partnerjs"
+            ],
+            "icon": "Krux.png",
+            "website": "https://www.salesforce.com/products/marketing-cloud/data-management/"   
+        },
+        "Prospector": {
+            "cats": [
+                10
+            ],
+            "html": [
+                "processprospector\\.js",
+                "<[^>]+data-name=['\"]prospectscript"
+            ],
+            "icon": "Prospector.png",
+            "website": "https://www.prospectorpro.co/"
+          },
+          "Sklik": {
+            "cats": [
+                36
+            ],
+            "html": "c\\.imedia\\.cz/js/script.js",
+            "icon": "Sklik.png",
+            "website": "https://www.sklik.cz/"
+          },
+          "Sharethrough": {
+            "cats": [
+                36
+            ],
+            "html": "\\.sharethrough\\.com",
+            "icon": "Sharethrough.png",
+            "website": "https://www.sharethrough.com/"
+          },
+          "Skimlinks": {
+              "cats": [
+                  36
+              ],
+              "html": "skimlinks.*\\.js",
+              "icon": "Skimlinks.png",
+              "website": "https://skimlinks.com/"
+          },
+          "Yieldmo": {
+              "cats": [
+                  36
+              ],
+              "html": "static\\.yieldmo\\.com",
+              "icon": "Yieldmo.png",
+              "website": "https://www.yieldmo.com/"
+          },
+          "Taboola": {
+              "cats": [
+                  5
+              ],
+              "html": "cdn.taboola.com",
+              "icon": "Taboola.png",
+              "website": "https://www.taboola.com/"
+          },
+          "Bizible": {
+              "cats": [
+                  32
+              ],
+              "html": "https://cdn.bizible.com/BizibleAcct.js",
+              "icon": "Marketo.png",
+              "website": "https://www.bizible.com/"
+          },
+          "CallRail": {
+              "cats": [
+                  10
+              ],
+              "html": "cdn.callrail.com",
+              "icon": "CallRail.png",
+              "website": "https://www.callrail.com/"
+          }
     }
 }
