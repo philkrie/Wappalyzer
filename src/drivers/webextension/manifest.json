@@ -4,7 +4,7 @@
 	"author": "Jeffrey Jose and Phillip Kriegel",
 	"homepage_url": "https://github.com/ampproject/ampbench/tree/master/readiness-tool",
 	"description": "Identify web technologies that are relevant to AMP",
-	"version": "3.0.0",
+	"version": "3.0.2",
 	"default_locale": "en",
 	"manifest_version": 2,
 	"icons": {
@@ -14,7 +14,7 @@
 	},
 	"page_action": {
 		"default_icon": "images/amp-readiness.png",
-		"default_title": "AMP Readiness Checker",
+		"default_title": "AMP Readiness Tool",
 		"default_popup": "html/popup.html"
 	},
 	"background": {

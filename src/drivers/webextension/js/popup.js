@@ -46,7 +46,8 @@ function appsToDomTemplate(response) {
   let amp_supported_template = [];
   let amp_not_supported_template = [];
   //Control what categories of apps we will use
-  let approved_categories = [1,5,6,10,11,12,18,32,36,41,42,52,59];
+  let approved_categories = [1,5,6,10,11,32,36,41,42,52];
+  // let approved_categories = [1,5,6,10,11,12,18,32,36,41,42,52,59]; //Original set
 
   if (response.tabCache && Object.keys(response.tabCache.detected).length > 0) {
     const categories = {};
@@ -380,7 +381,7 @@ function isAMPSupported(appName) {
     'Google AdWords',
     'Google Analytics',
     'INFOnline / IVW',
-    'Krux',
+    'Krux (Salesforce DMP)',
     'Linkpulse',
     'Lotame',
     'Médiamétrie',
