@@ -195,7 +195,7 @@
         "OEWA",
         "Parsely",
         "Piano",
-        "Quantcast Measurement",
+        "Quantcast",
         "Segment",
         "SOASTA mPulse",
         "SimpleReach",
@@ -238,6 +238,13 @@
         "Springboard",
         "Vimeo",
         "Vine",
-        "YouTube"
+        "YouTube",
+        "Bringhub",
+        "Outbrain",
+        "Taboola",
+        "ZergNet"
+    ],
+    "incompatible": [
+        "Optimizely"
     ]
 }

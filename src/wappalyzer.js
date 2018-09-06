@@ -120,6 +120,8 @@ class Application {
 class Wappalyzer {
   constructor() {
     this.apps = {};
+    this.supported_apps = {};
+    this.incompatible_apps = {};
     this.categories = {};
     this.driver = {};
     this.jsPatterns = {};

@@ -99,6 +99,14 @@ fetch('../apps.json')
   })
   .catch(error => wappalyzer.log(`GET apps.json: ${error}`, 'driver', 'error'));
 
+fetch('../supported_apps.json')
+  .then(response => response.json())
+  .then((json) => {
+    wappalyzer.supported_apps = json.supported;
+    wappalyzer.incompatible_apps = json.incompatible;
+  })
+.catch(error => wappalyzer.log(`GET supported_apps.json: ${error}`, 'driver', 'error'));
+
 // Version check
 const { version } = browser.runtime.getManifest();
 
@@ -204,9 +212,12 @@ browser.webRequest.onCompleted.addListener((request) => {
           apps: wappalyzer.apps,
           categories: wappalyzer.categories,
           pinnedCategory: options.pinnedCategory,
+          supported_apps: wappalyzer.supported_apps,
+          incompatible_apps: wappalyzer.incompatible_apps
         };
 
         break;
+
       case 'set_option':
         setOption(message.key, message.value);
 
