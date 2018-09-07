@@ -1,17 +1,16 @@
 /** global: chrome */
 /** global: browser */
 
-let pinnedCategory = null;
-
 const func = (tabs) => {
   (chrome || browser).runtime.sendMessage({
     id: 'get_apps',
     tab: tabs[0],
     source: 'popup.js',
   }, (response) => {
-    pinnedCategory = response.pinnedCategory;
     console.log(response.apps);
     console.log(response.supported_apps);
+    console.log(response.cat_tooltips);
+    console.log(response.categories);
     replaceDomWhenReady(appsToDomTemplate(response));
   });
 };
@@ -175,15 +174,9 @@ function appsToDomTemplate(response) {
                   'a', {
                     class: 'detected__category-link',
                     target: '_blank',
-                    href: `https://www.wappalyzer.com/categories/${slugify(response.categories[cat].name)}`,
+                    href: `https://www.wappalyzer.com/categories/${response.categories[cat].name}`,
                   },
                   browser.i18n.getMessage(`categoryName${cat}`),
-                ], [
-                  'span', {
-                    class: `detected__category-pin-wrapper${pinnedCategory == cat ? ' detected__category-pin-wrapper--active' : ''}`,
-                    'data-category-id': cat,
-                    title: browser.i18n.getMessage('categoryPin'),
-                  }
                 ],
               ], [
                 'div', {
@@ -201,21 +194,16 @@ function appsToDomTemplate(response) {
                 class: 'detected__category',
               }, [
                 'div', {
-                  class: 'detected__category-name',
+                  class: `${categoryHasTooltip(cat, response.cat_tooltips) ? 'tooltip':''} detected__category-name`,
+                  data_tooltip: `${categoryHasTooltip(cat, response.cat_tooltips) ? response.cat_tooltips[cat]:''}`,
                 }, [
                   'a', {
                     class: 'detected__category-link',
                     target: '_blank',
-                    href: `https://www.wappalyzer.com/categories/${slugify(response.categories[cat].name)}`,
+                    href: `https://www.wappalyzer.com/categories/${response.categories[cat].name}`,
                   },
                   browser.i18n.getMessage(`categoryName${cat}`),
-                ], [
-                  'span', {
-                    class: `detected__category-pin-wrapper${pinnedCategory == cat ? ' detected__category-pin-wrapper--active' : ''}`,
-                    'data-category-id': cat,
-                    title: browser.i18n.getMessage('categoryPin'),
-                  }
-                ],
+                ], 
               ], [
                 'div', {
                   class: 'detected__apps',
@@ -237,16 +225,10 @@ function appsToDomTemplate(response) {
                   'a', {
                     class: 'detected__category-link',
                     target: '_blank',
-                    href: `https://www.wappalyzer.com/categories/${slugify(response.categories[cat].name)}`,
+                    href: `https://www.wappalyzer.com/categories/${response.categories[cat].name}`,
                   },
                   browser.i18n.getMessage(`categoryName${cat}`),
-                ], [
-                  'span', {
-                    class: `detected__category-pin-wrapper${pinnedCategory == cat ? ' detected__category-pin-wrapper--active' : ''}`,
-                    'data-category-id': cat,
-                    title: browser.i18n.getMessage('categoryPin'),
-                  },
-                ],
+                ], 
               ], [
                 'div', {
                   class: 'detected__apps',
@@ -297,10 +279,6 @@ function appsToDomTemplate(response) {
   return template;
 }
 
-function slugify(string) {
-  return string.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/--+/g, '-').replace(/(?:^-|-$)/, '');
-}
-
 
 /**
  * TODO (alwalton@): get list of supported ads/analytics programatically
@@ -310,12 +288,15 @@ function slugify(string) {
  */
 function isAMPSupported(appName, supported_array) {
   console.log("testing " + appName);
-  // If it is NOT in list of supported vendors
   return supported_array.includes(appName);
 }
 
 function isAMPIncompatible(appName, incompatible_array) {
   console.log("testing " + appName);
-  // If it is NOT in list of supported vendors
   return incompatible_array.includes(appName);
+}
+
+function categoryHasTooltip(category, categoryTooltipArray) {
+  console.log("check for tooltip for " + category);
+  return categoryTooltipArray.hasOwnProperty(category);
 }

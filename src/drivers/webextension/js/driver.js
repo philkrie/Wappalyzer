@@ -94,18 +94,15 @@ fetch('../apps.json')
         categoryOrder = Object.keys(wappalyzer.categories)
           .map(categoryId => parseInt(categoryId, 10))
           .sort((a, b) => wappalyzer.categories[a].priority - wappalyzer.categories[b].priority);
+
+        wappalyzer.supported_apps = json_ext.supported;
+        wappalyzer.incompatible_apps = json_ext.incompatible;
+        wappalyzer.cat_tooltips = json_ext.categoryTooltips;
+        
     })
     .catch(error => wappalyzer.log(`GET extended_apps.json: ${error}`, 'driver', 'error'));
   })
   .catch(error => wappalyzer.log(`GET apps.json: ${error}`, 'driver', 'error'));
-
-fetch('../supported_apps.json')
-  .then(response => response.json())
-  .then((json) => {
-    wappalyzer.supported_apps = json.supported;
-    wappalyzer.incompatible_apps = json.incompatible;
-  })
-.catch(error => wappalyzer.log(`GET supported_apps.json: ${error}`, 'driver', 'error'));
 
 // Version check
 const { version } = browser.runtime.getManifest();
@@ -213,7 +210,8 @@ browser.webRequest.onCompleted.addListener((request) => {
           categories: wappalyzer.categories,
           pinnedCategory: options.pinnedCategory,
           supported_apps: wappalyzer.supported_apps,
-          incompatible_apps: wappalyzer.incompatible_apps
+          incompatible_apps: wappalyzer.incompatible_apps,
+          cat_tooltips: wappalyzer.cat_tooltips
         };
 
         break;

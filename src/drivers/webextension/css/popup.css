@@ -28,26 +28,21 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 .card {
   background: #fff;
   box-shadow: 0px 3px 20px 0 rgba(0, 0, 0, 0.075);
   box-sizing: border-box;
-  flex: 0 0 33%;
+  flex: 0 0 32%;
   margin: 10px 5px;
   padding: 10px;
   position: relative;
-}
-
-.card::before {
-  background: linear-gradient(to right, #1c79c0, #0389ff, #0dd3ff);
-  content: '';
-  left: 0;
-  height: 2px;
-  position: absolute;
-  right: 0;
-  top: -2px;
 }
 
 .card-inner {
@@ -59,6 +54,7 @@
 
 .title-container {
   display: flex;
+  direction: row;
 }
 
 .detected {
@@ -68,19 +64,16 @@
 }
 
 .amp_supported {
-  width: 30%;
   padding: 0 1.66% 0 1.66%;
   height: 100%;
 }
 
 .amp_work_around {
-  width: 30%;
   padding: 0 1.66% 0 1.66%;
   height: 100%;
 }
 
 .amp_not_supported {
-  width: 30%;
   padding: 0 1.66% 0 1.66%;
   height: 100%;
 }
@@ -202,9 +195,9 @@
 }
 
 html {
-  background-color: #fff;
+  background-color: #eae9e9;
   color: #333;
-  width: 700px;
+  width: 780px;
   padding: 10px 10px 0px 10px;
 }
 
@@ -224,8 +217,17 @@ header {
 }
 
 #logo {
-  height: 25px;
-  width: 25px;
+  height: 15px;
+  width: 15px;
+}
+
+.logo {
+  float: left;
+  margin: 0 0 0px 10px;
+}
+
+.info {
+  float: right;
 }
 
 #title {
@@ -240,10 +242,21 @@ header {
   font-weight: 400;
   letter-spacing: .56px;
   line-height: 16px;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin: 10px 1px 10px 5px;
+  position: relative;
+  flex: 0 0 32%;
 }
 
+.title::after {
+  background: linear-gradient(to right, #1c79c0, #0389ff, #0dd3ff);
+  content: '';
+  left: 0;
+  height: 2px;
+  position: absolute;
+  right: 0;
+  top: 24px;
+  width: 240px;
+}
 .title .dot {}
 
 .title .text {
@@ -257,11 +270,11 @@ header {
 }
 
 .work-around {
-  color: #ff9100;
+  color: #34a853;
 }
 
 .not-supported {
-  color: #ef0000;
+  color: #ff9100;
 }
 
 .rows {
@@ -309,12 +322,13 @@ li.empty {
 
 footer {
   font-size: 12px;
-  float: right;
+  width: 100%;
+  padding-top: 10px;
 }
 
 footer div {
   display: inline-block;
-  margin: 0px 10px 10px;
+  margin: 0px 10px;
   color: #959595;
 }
 
@@ -340,15 +354,15 @@ footer div a:hover {
 /* Tooltip Styles */
 /* Add this attribute to the element that needs a tooltip */
 
-[data-tooltip] {
+[data_tooltip] {
   position: relative;
   z-index: 2;
   cursor: pointer;
 }
 /* Hide the tooltip content by default */
 
-[data-tooltip]:before,
-[data-tooltip]:after {
+[data_tooltip]:before,
+[data_tooltip]:after {
   visibility: hidden;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
@@ -357,10 +371,9 @@ footer div a:hover {
 }
 /* Position tooltip above the element */
 
-[data-tooltip]:before {
+[data_tooltip]:before {
   position: absolute;
-  bottom: 150%;
-  left: 50%;
+  left: 150%;
   margin-bottom: 5px;
   margin-left: -80px;
   padding: 7px;
@@ -371,31 +384,31 @@ footer div a:hover {
   background-color: #000;
   background-color: hsla(0, 0%, 20%, 0.9);
   color: #fff;
-  content: attr(data-tooltip);
+  content: attr(data_tooltip);
   text-align: center;
   font-size: 14px;
   line-height: 1.2;
 }
 /* Triangle hack to make tooltip look like a speech bubble */
 
-[data-tooltip]:after {
+[data_tooltip]:after {
   position: absolute;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -5px;
+  left: 150%;
+  margin-left: -85px;
+  margin-top: 10px;
   width: 0;
-  border-top: 5px solid #000;
-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
+  border-right: 5px solid #000;
+  border-right: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-bottom: 5px solid transparent;
+  border-top: 5px solid transparent;
   content: " ";
   font-size: 0;
   line-height: 0;
 }
 /* Show tooltip content on hover */
 
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
+[data_tooltip]:hover:before,
+[data_tooltip]:hover:after {
   visibility: visible;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);

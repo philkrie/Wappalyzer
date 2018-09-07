@@ -122,6 +122,7 @@ class Wappalyzer {
     this.apps = {};
     this.supported_apps = {};
     this.incompatible_apps = {};
+    this.cat_tooltips = {};
     this.categories = {};
     this.driver = {};
     this.jsPatterns = {};
