@@ -77,13 +77,13 @@ function post(url, body) {
     .catch(error => wappalyzer.log(`POST ${url}: ${error}`, 'driver', 'error'));
 }
 
-fetch('../apps.json')
+fetch('https://raw.githubusercontent.com/philkrie/Wappalyzer/master/src/drivers/webextension/apps.json')
   .then(response => response.json())
   .then((json) => {
     wappalyzer.apps = json.apps;
     wappalyzer.categories = json.categories;
     
-    fetch('../extended_apps.json')
+    fetch('https://raw.githubusercontent.com/philkrie/Wappalyzer/master/src/drivers/webextension/extended_apps.json')
       .then(response_ext => response_ext.json())
       .then((json_ext) => {
         
@@ -98,6 +98,7 @@ fetch('../apps.json')
         wappalyzer.supported_apps = json_ext.supported;
         wappalyzer.incompatible_apps = json_ext.incompatible;
         wappalyzer.cat_tooltips = json_ext.categoryTooltips;
+        wappalyzer.tech_tooltips = json_ext.technologyTooltips;
         
     })
     .catch(error => wappalyzer.log(`GET extended_apps.json: ${error}`, 'driver', 'error'));

@@ -7,10 +7,6 @@ const func = (tabs) => {
     tab: tabs[0],
     source: 'popup.js',
   }, (response) => {
-    console.log(response.apps);
-    console.log(response.supported_apps);
-    console.log(response.cat_tooltips);
-    console.log(response.categories);
     replaceDomWhenReady(appsToDomTemplate(response));
   });
 };
@@ -114,7 +110,8 @@ function appsToDomTemplate(response) {
                 },
               ], [
                 'span', {
-                  class: 'detected__app-name',
+                  class: `${technologyHasTooltip(appName, response.tech_tooltips) ? 'tooltip':''} detected__app-name`,
+                  data_tooltip: `${technologyHasTooltip(appName, response.tech_tooltips) ? response.tech_tooltips[appName]:''}`,
                 },
                 appName,
               ], version ? [
@@ -299,4 +296,9 @@ function isAMPIncompatible(appName, incompatible_array) {
 function categoryHasTooltip(category, categoryTooltipArray) {
   console.log("check for tooltip for " + category);
   return categoryTooltipArray.hasOwnProperty(category);
+}
+
+function technologyHasTooltip(technology, technologyTooltipArray) {
+  console.log("check for tooltip for " + technology);
+  return technologyTooltipArray.hasOwnProperty(technology);
 }
