@@ -7,6 +7,7 @@ const func = (tabs) => {
     tab: tabs[0],
     source: 'popup.js',
   }, (response) => {
+    console.log(response.tech_tooltips);
     replaceDomWhenReady(appsToDomTemplate(response));
   });
 };
@@ -100,7 +101,8 @@ function appsToDomTemplate(response) {
           amp_not_supported_apps.push(
             [
               'a', {
-                class: 'detected__app',
+                class: `${technologyHasTooltip(appName, response.tech_tooltips) ? 'tooltip':''} detected__app`,
+                data_tooltip_left: `${technologyHasTooltip(appName, response.tech_tooltips) ? response.tech_tooltips[appName]:''}`,
                 target: '_blank',
                 href: `${response.apps[appName].website}`,
               }, [
@@ -110,8 +112,7 @@ function appsToDomTemplate(response) {
                 },
               ], [
                 'span', {
-                  class: `${technologyHasTooltip(appName, response.tech_tooltips) ? 'tooltip':''} detected__app-name`,
-                  data_tooltip: `${technologyHasTooltip(appName, response.tech_tooltips) ? response.tech_tooltips[appName]:''}`,
+                  class: 'detected__app-name',
                 },
                 appName,
               ], version ? [
@@ -131,7 +132,8 @@ function appsToDomTemplate(response) {
           amp_work_around_apps.push(
             [
               'a', {
-                class: 'detected__app',
+                class: `${technologyHasTooltip(appName, response.tech_tooltips) ? 'tooltip':''} detected__app`,
+                data_tooltip_left: `${technologyHasTooltip(appName, response.tech_tooltips) ? response.tech_tooltips[appName]:''}`,
                 target: '_blank',
                 href: `${response.apps[appName].website}`,
               }, [
@@ -192,7 +194,7 @@ function appsToDomTemplate(response) {
               }, [
                 'div', {
                   class: `${categoryHasTooltip(cat, response.cat_tooltips) ? 'tooltip':''} detected__category-name`,
-                  data_tooltip: `${categoryHasTooltip(cat, response.cat_tooltips) ? response.cat_tooltips[cat]:''}`,
+                  data_tooltip_left: `${categoryHasTooltip(cat, response.cat_tooltips) ? response.cat_tooltips[cat]:''}`,
                 }, [
                   'a', {
                     class: 'detected__category-link',

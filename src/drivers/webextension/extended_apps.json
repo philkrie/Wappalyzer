@@ -385,6 +385,7 @@
         "59": "It's important to be aware that external JavaScript isn't supported in AMP, but that doesn't mean you can't achieve the same functionality. AMP JS is fully capable of replacing most functionality provided by popular JS libraries"
     },
     "technologyTooltips": {
-        "Optimizely": "Client side A/B testing simply isn't possible. Try server side testing and amp-experiment"
+        "Optimizely": "Client side A/B testing simply isn't possible. Try server side testing and amp-experiment",
+        "jQuery": "jQuery is a very common JS library that is used for convenience, but doesn't offer anything AMP JS can't"
     }
 }
