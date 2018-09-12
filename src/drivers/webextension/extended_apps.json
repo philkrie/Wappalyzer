@@ -24,12 +24,12 @@
             "icon": "Branch.png",
             "website": "https://branch.io/"
         },
-        "Google AdWords Remarketing Tag": {
+        "Google Ads": {
             "cats": [
                 36
             ],
             "html": "<script[\\s\\S]*googleads\\.g\\.doubleclick\\.net/pagead/viewthroughconversion[\\s\\S]*script>",
-            "icon": "Google AdWords Remarketing Tag.png",
+            "icon": "Google Ads.png",
             "website": "https://ads.google.com/home/"   
         },
         "Koego": {
@@ -377,8 +377,8 @@
         "11": "Blogs/commenting systems aren't supported in AMP",
         "12": "Client side JavaScript frameworks won't mesh with AMP, but AMP JS can replace the functionality of these frameworks. Server side rendering using frameworks (i.e. React, Angular) is supported.",
         "18": "Web Frameworks that run on the server are usable with AMP. Client side scripts utilized by these frameworks won't be usable.",
-        "32": "Marketing Automation",
-        "36": "Advertising Networks",
+        "32": "AMP analytics can send data to any endpoint for marketing automation",
+        "36": "AMP provides documentation on how ad networks can integrate",
         "41": "You can support payments in AMP through an amp-iframe with the allowpaymentrequest attribute set",
         "42": "The only tag manager that is currently configured to work with AMP is Google Tag Manager",
         "52": "A chat feature would have to be reserved for another part of your site. Currently not possible within an AMP page",

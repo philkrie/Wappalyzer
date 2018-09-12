@@ -7,7 +7,6 @@ const func = (tabs) => {
     tab: tabs[0],
     source: 'popup.js',
   }, (response) => {
-    console.log(response.tech_tooltips);
     replaceDomWhenReady(appsToDomTemplate(response));
   });
 };
@@ -193,8 +192,7 @@ function appsToDomTemplate(response) {
                 class: 'detected__category',
               }, [
                 'div', {
-                  class: `${categoryHasTooltip(cat, response.cat_tooltips) ? 'tooltip':''} detected__category-name`,
-                  data_tooltip_left: `${categoryHasTooltip(cat, response.cat_tooltips) ? response.cat_tooltips[cat]:''}`,
+                  class: 'detected__category-name',
                 }, [
                   'a', {
                     class: 'detected__category-link',
@@ -202,7 +200,13 @@ function appsToDomTemplate(response) {
                     href: `https://www.wappalyzer.com/categories/${response.categories[cat].name}`,
                   },
                   browser.i18n.getMessage(`categoryName${cat}`),
-                ], 
+                ], [
+                  'span', {
+                    class: `${categoryHasTooltip(cat, response.cat_tooltips) ? 'tooltip question-mark':''}`,
+                    data_tooltip_left: `${categoryHasTooltip(cat, response.cat_tooltips) ? response.cat_tooltips[cat]:''}`,
+                  },
+                  "    (?)"
+                ]
               ], [
                 'div', {
                   class: 'detected__apps',
