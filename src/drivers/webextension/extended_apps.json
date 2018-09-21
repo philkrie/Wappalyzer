@@ -386,7 +386,7 @@
         "Zendesk Chat"
     ],
     "categoryTooltips": {
-        "1": "AMP pages need to be built within the template system of a CMS, or be built stand alone outside of the CMS",
+        "1": "AMP pages need to be built within the template system of a CMS, or be built stand alone outside of the CMS. To create AMPs that look and feel like your non-AMPs with a CMS will require coding on your part. Plugins aren't likely to convert everything automatically, and could give sub-par results.",
         "5": "Social features can be added in AMP pages using the amp-social-share component",
         "6": "Many ecommerce platforms can serve AMP pages. Ask the vendor if they support AMP",
         "10": "If an analytics vendor isn't officially supported, there are numerous ways to send data from your AMP page to 3rd party vendors. Check the amp-analytics documentation",
